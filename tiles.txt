@@ -1,0 +1,24 @@
+1x1, blue#0057A6, 0.02
+2x4, blue#0057A6, 0.01
+1x1, yellow#FEC400, 0.01
+2x4, yellow#FEC400, 0.01
+1x1, gray#9C9C9C, 0.01
+2x4, gray#9C9C9C, 0.01
+1x1, tan#DEC69C, 0.01
+2x4, tan#DEC69C, 0.01
+1x1, dark tan#907450, 0.01
+2x4, dark tan#907450, 0.01
+1x1, green#00642E, 0.01
+2x4, green#00642E, 0.01
+1x1, lime#A6CA55, 0.01
+2x4, lime#A6CA55, 0.01
+1x1, reddish brown#89351D, 0.01
+2x4, reddish brown#89351D, 0.01
+1x1, orange#FF7E14, 0.01
+2x4, orange#FF7E14, 0.01
+1x1, medium blue#61AFFF, 0.01
+2x4, medium blue#61AFFF, 0.01
+1x1, dark blue#143044, 0.01
+2x4, dark blue#143044, 0.01
+1x1, brown#532115, 0.01
+2x4, brown#532115, 0.01
