@@ -1,0 +1,19 @@
+{
+	"name": "rustyfausak/bricklist",
+	"description": "Converts a pixel image to a Lego parts list.",
+	"keywords": ["lego", "mosaic"],
+	"autoload": {
+		"psr-0" : {
+			"RustyFausak\\BrickList" : "src"
+		}
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/rustyfausak/bricklist.git"
+		}
+	],
+	"require" : {
+		"rustyfausak/bricklist" : "dev-master"
+	}
+}
