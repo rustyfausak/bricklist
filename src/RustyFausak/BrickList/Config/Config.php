@@ -28,6 +28,12 @@ class Config
 			throw new \Exception('Could not open tile file "' . $path . '" for reading.');
 		}
 		while (($line = fgets($handle)) !== false) {
+			if (!strlen(trim($line))) {
+				continue;
+			}
+			if (strpos($line, '#') === 0) {
+				continue;
+			}
 			$this->addTile(Tile::fromText(trim($line)));
 		}
 		fclose($handle);

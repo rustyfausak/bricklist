@@ -1,24 +1,30 @@
+# prices from bricklink.com on 2016-02-26
+# from sellers with at least 100 qty
 1x1, blue#0057A6, 0.02
 2x4, blue#0057A6, 0.01
-1x1, yellow#FEC400, 0.01
+1x1, yellow#FEC400, 0.03
 2x4, yellow#FEC400, 0.01
-1x1, gray#9C9C9C, 0.01
-2x4, gray#9C9C9C, 0.01
-1x1, tan#DEC69C, 0.01
-2x4, tan#DEC69C, 0.01
-1x1, dark tan#907450, 0.01
-2x4, dark tan#907450, 0.01
-1x1, green#00642E, 0.01
-2x4, green#00642E, 0.01
-1x1, lime#A6CA55, 0.01
-2x4, lime#A6CA55, 0.01
-1x1, reddish brown#89351D, 0.01
-2x4, reddish brown#89351D, 0.01
-1x1, orange#FF7E14, 0.01
-2x4, orange#FF7E14, 0.01
-1x1, medium blue#61AFFF, 0.01
-2x4, medium blue#61AFFF, 0.01
-1x1, dark blue#143044, 0.01
-2x4, dark blue#143044, 0.01
-1x1, brown#532115, 0.01
-2x4, brown#532115, 0.01
+1x1, light gray#9C9C9C, 0.06
+2x4, light gray#9C9C9C, 0.04
+1x1, tan#DEC69C, 0.04
+2x4, tan#DEC69C, 0.05
+1x1, dark tan#907450, 0.04
+2x4, dark tan#907450, 0.06
+1x1, green#00642E, 0.02
+2x4, green#00642E, 0.06
+1x1, lime#A6CA55, 0.09
+2x4, lime#A6CA55, 0.04
+1x1, reddish brown#89351D, 0.05
+2x4, reddish brown#89351D, 0.03
+1x1, orange#FF7E14, 0.05
+2x4, orange#FF7E14, 0.04
+1x1, medium blue#61AFFF, 0.03
+2x4, medium blue#61AFFF, 0.09
+1x1, dark blue#143044, 0.04
+2x4, dark blue#143044, 0.08
+1x1, brown#532115, 0.41
+2x4, brown#532115, 0.08
+1x1, white#FFFFFF, 0.03
+2x4, white#FFFFFF, 0.03
+1x1, black#000000, 0.04
+2x4, black#000000, 0.01
