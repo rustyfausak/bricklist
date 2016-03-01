@@ -8,11 +8,14 @@ class Config
 	private $tiles;
 
 	/**
-	 * Default constructor
+	 * @param string $tile_file_path
 	 */
-	public function __construct()
+	public function __construct($tile_file_path = null)
 	{
 		$this->tiles = [];
+		if ($tile_file_path) {
+			$this->readTileFile($tile_file_path);
+		}
 	}
 
 	/**
@@ -23,6 +26,7 @@ class Config
 	 */
 	public function readTileFile($path)
 	{
+		$this->tiles = [];
 		$handle = fopen($path, 'r');
 		if (!$handle) {
 			throw new \Exception('Could not open tile file "' . $path . '" for reading.');
@@ -44,6 +48,6 @@ class Config
 	 */
 	public function addTile(Tile $tile)
 	{
-		$this->tiles[] = $tile;
+		array_push($this->tiles, $tile);
 	}
 }

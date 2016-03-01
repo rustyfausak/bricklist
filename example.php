@@ -2,6 +2,6 @@
 
 require 'vendor/autoload.php';
 
-$config = new RustyFausak\BrickList\Config\Config();
-$config->readTileFile('tiles.txt');
-print_r($config);
+$config = new RustyFausak\BrickList\Config\Config('tiles.txt');
+$bricklist = new RustyFausak\BrickList\BrickList($config);
+$bricklist->process('img/earth.png');
