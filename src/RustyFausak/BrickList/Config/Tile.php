@@ -23,6 +23,31 @@ class Tile
 		$this->price = $price;
 	}
 
+	public function __toString()
+	{
+		return "Tile [\n"
+			. "\tBrick => {$this->brick}\n"
+			. "\tColor => {$this->color}\n"
+			. "\tPrice => {$this->price}\n"
+			. "]\n";
+	}
+
+	/**
+	 * @return Color
+	 */
+	public function getColor()
+	{
+		return $this->color;
+	}
+
+	/**
+	 * @return Brick
+	 */
+	public function getBrick()
+	{
+		return $this->brick;
+	}
+
 	/**
 	 * Creates a Tile from the given `$text`. Tiles are formatted like this:
 	 *
@@ -38,7 +63,7 @@ class Tile
 	{
 		$parts = array_map('trim', explode(',', $text));
 		if (sizeof($parts) != 3) {
-			throw new \Exception('Could not build Tile from text "' . $text . '".');
+			throw new \Exception("Could not build Tile from text '" . $text . "'.");
 		}
 		return new self(
 			Brick::fromText($parts[0]),

@@ -20,6 +20,38 @@ class Brick
 	}
 
 	/**
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return "{$this->length}x{$this->width}";
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getSize()
+	{
+		return $this->length * $this->width;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getLength()
+	{
+		return $this->length;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getWidth()
+	{
+		return $this->width;
+	}
+
+	/**
 	 * Creates a Brick from the given `$text`. Bricks are formatted like this:
 	 *
 	 * <length>x<width>
@@ -34,7 +66,7 @@ class Brick
 	{
 		$parts = array_map('trim', explode('x', $text));
 		if (sizeof($parts) != 2) {
-			throw new \Exception('Could not build Brick from text "' . $text . '".');
+			throw new \Exception("Could not build Brick from text '" . $text . "'.");
 		}
 		return new self(
 			intval($parts[0]),

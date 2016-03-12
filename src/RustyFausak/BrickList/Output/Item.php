@@ -18,4 +18,15 @@ class Item
 		$this->tile = $tile;
 		$this->quantity = $quantity;
 	}
+
+	/**
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return "Item [\n"
+			. "\tTile => {$this->tile}\n"
+			. "\tQuantity => {$this->quantity}\n"
+			. "]\n";
+	}
 }
