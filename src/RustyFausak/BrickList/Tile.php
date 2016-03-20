@@ -1,15 +1,15 @@
 <?php
 
-namespace RustyFausak\BrickList\Config;
+namespace RustyFausak\BrickList;
 
 class Tile
 {
 	/* @var Brick */
-	private $brick;
+	public $brick;
 	/* @var Color */
-	private $color;
+	public $color;
 	/* @var float */
-	private $price;
+	public $price;
 
 	/**
 	 * @param Brick $brick
@@ -23,29 +23,12 @@ class Tile
 		$this->price = $price;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString()
 	{
-		return "Tile [\n"
-			. "\tBrick => {$this->brick}\n"
-			. "\tColor => {$this->color}\n"
-			. "\tPrice => {$this->price}\n"
-			. "]\n";
-	}
-
-	/**
-	 * @return Color
-	 */
-	public function getColor()
-	{
-		return $this->color;
-	}
-
-	/**
-	 * @return Brick
-	 */
-	public function getBrick()
-	{
-		return $this->brick;
+		return "{$this->brick};{$this->color};{$this->price}";
 	}
 
 	/**
@@ -70,5 +53,17 @@ class Tile
 			Color::fromText($parts[1]),
 			floatval($parts[2])
 		);
+	}
+
+	/**
+	 * @param Tile $tile1
+	 * @param Tile $tile2
+	 * @return bool
+	 */
+	public static function match($tile1, $tile2)
+	{
+		return $tile1->brick->length == $tile2->brick->length
+			&& $tile1->brick->width == $tile2->brick->width
+			&& $tile1->color->hex == $tile2->color->hex;
 	}
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace RustyFausak\BrickList\Config;
+namespace RustyFausak\BrickList;
 
 class Color
 {
 	/* @var string */
-	private $name;
+	public $name;
 	/* @var string */
-	private $hex;
+	public $hex;
 
 	/**
 	 * @param string $name
@@ -25,14 +25,6 @@ class Color
 	public function __toString()
 	{
 		return "#{$this->hex}";
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getHex()
-	{
-		return $this->hex;
 	}
 
 	/**
@@ -118,6 +110,8 @@ class Color
 	 * @return int
 	 */
 	public static function diff($rgb1, $rgb2) {
-		return abs(array_shift($rgb1) - array_shift($rgb2)) + abs(array_shift($rgb1) - array_shift($rgb2)) + abs(array_shift($rgb1) - array_shift($rgb2));
+		return abs(array_shift($rgb1) - array_shift($rgb2))
+			+ abs(array_shift($rgb1) - array_shift($rgb2))
+			+ abs(array_shift($rgb1) - array_shift($rgb2));
 	}
 }

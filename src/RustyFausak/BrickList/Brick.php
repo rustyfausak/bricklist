@@ -1,13 +1,13 @@
 <?php
 
-namespace RustyFausak\BrickList\Config;
+namespace RustyFausak\BrickList;
 
 class Brick
 {
 	/* @var int */
-	private $length;
+	public $length;
 	/* @var int */
-	private $width;
+	public $width;
 
 	/**
 	 * @param int $length
@@ -33,22 +33,6 @@ class Brick
 	public function getSize()
 	{
 		return $this->length * $this->width;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getLength()
-	{
-		return $this->length;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getWidth()
-	{
-		return $this->width;
 	}
 
 	/**

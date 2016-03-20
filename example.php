@@ -1,6 +1,8 @@
 <?php
 
 require 'vendor/autoload.php';
+use RustyFausak\BrickList\Config;
+use RustyFausak\BrickList\BrickList;
 
 function usage()
 {
@@ -12,8 +14,9 @@ if (sizeof($argv) < 3) {
 	usage();
 }
 
-$config = new RustyFausak\BrickList\Config\Config($argv[1]);
-$bricklist = new RustyFausak\BrickList\BrickList($config);
+$config = new Config($argv[1]);
+$bricklist = new BrickList($config);
 for ($i = 2; $i < sizeof($argv); $i++) {
 	$bricklist->process($argv[$i]);
 }
+$bricklist->outputCsv('output.csv');

@@ -5,9 +5,9 @@ namespace RustyFausak\BrickList;
 class Pixel
 {
 	/* @var string */
-	private $hex;
+	public $hex;
 	/* @var bool */
-	private $is_covered;
+	public $is_covered;
 
 	/**
 	 * @param string $hex
@@ -16,29 +16,5 @@ class Pixel
 	{
 		$this->hex = $hex;
 		$this->is_covered = false;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function setCovered()
-	{
-		$this->is_covered = true;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getHex()
-	{
-		return $this->hex;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function isCovered()
-	{
-		return $this->is_covered;
 	}
 }

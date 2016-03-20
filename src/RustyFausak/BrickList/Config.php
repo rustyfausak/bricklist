@@ -1,13 +1,13 @@
 <?php
 
-namespace RustyFausak\BrickList\Config;
+namespace RustyFausak\BrickList;
 
 class Config
 {
 	/* @var array of Tile */
-	private $tiles;
+	public $tiles;
 	/* @var array of string hex (image color) to string hex (color in tiles) */
-	private $color_cache;
+	public $color_cache;
 
 	/**
 	 * @param string $tile_file_path
@@ -52,17 +52,9 @@ class Config
 			if (strpos($line, '#') === 0) {
 				continue;
 			}
-			$this->addTile(Tile::fromText(trim($line)));
+			array_push($this->tiles, Tile::fromText(trim($line)));
 		}
 		fclose($handle);
-	}
-
-	/**
-	 * @param Tile $tile
-	 */
-	public function addTile(Tile $tile)
-	{
-		array_push($this->tiles, $tile);
 	}
 
 	/**
@@ -72,7 +64,7 @@ class Config
 	{
 		$tiles = [];
 		foreach ($this->tiles as $tile) {
-			if ($tile->getColor()->getHex() == $hex) {
+			if ($tile->color->hex == $hex) {
 				$tiles[] = $tile;
 			}
 		}
@@ -94,10 +86,10 @@ class Config
 		$selected_hex = null;
 		$lowest_diff = null;
 		foreach ($this->tiles as $tile) {
-			$tile_rgb = $tile->getColor()->getRgb();
+			$tile_rgb = $tile->color->getRgb();
 			$diff = Color::diff($rgb, $tile_rgb);
 			if ($selected_hex === null || $lowest_diff === null || $diff < $lowest_diff) {
-				$selected_hex = $tile->getColor()->getHex();
+				$selected_hex = $tile->color->hex;
 				$lowest_diff = $diff;
 			}
 		}

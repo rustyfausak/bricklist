@@ -5,11 +5,11 @@ namespace RustyFausak\BrickList;
 class Image
 {
 	/* @var array of array of array of Pixel */
-	private $data;
+	public $data;
 
 	/**
 	 * @param string $path
-	 * @param \RustyFausak\BrickList\Config\Config $config
+	 * @param Config $config
 	 */
 	public function __construct($path, $config)
 	{
@@ -21,7 +21,7 @@ class Image
 	 * Reads an image at the path `$path` and loads it into this instance.
 	 *
 	 * @param string $path
-	 * @param \RustyFausak\BrickList\Config\Config $config
+	 * @param Config $config
 	 */
 	public function load($path, $config)
 	{
@@ -58,12 +58,12 @@ class Image
 		];
 		foreach ($this->data as $y => $row) {
 			foreach ($row as $x => $pixel) {
-				$hex = $pixel->getHex();
+				$hex = $pixel->hex;
 				if (!array_key_exists($hex, $summary['colors'])) {
 					$summary['colors'][$hex] = 0;
 				}
 				$summary['colors'][$hex]++;
-				$summary['coverage'][$pixel->isCovered()]++;
+				$summary['coverage'][$pixel->is_covered]++;
 			}
 		}
 		return $summary;
@@ -97,10 +97,9 @@ class Image
 	 */
 	public function fitTile($tile, $x, $y)
 	{
-		$brick = $tile->getBrick();
-		$length = $brick->getLength();
-		$width = $brick->getWidth();
-		$hex = $tile->getColor()->getHex();
+		$length = $tile->brick->length;
+		$width = $tile->brick->width;
+		$hex = $tile->color->hex;
 		if ($this->_fit($hex, $x, $x + $length, $y, $y + $width)) {
 			$this->_cover($x, $x + $length, $y, $y + $width);
 			return true;
@@ -120,7 +119,7 @@ class Image
 	 * @param int $y1
 	 * @return bool
 	 */
-	private function _fit($hex, $x0, $x1, $y0, $y1)
+	public function _fit($hex, $x0, $x1, $y0, $y1)
 	{
 		for ($y = $y0; $y < $y1; $y++) {
 			for ($x = $x0; $x < $x1; $x++) {
@@ -130,10 +129,10 @@ class Image
 				if ($x >= sizeof($this->data[$y])) {
 					return false;
 				}
-				if ($this->data[$y][$x]->getHex() != $hex) {
+				if ($this->data[$y][$x]->hex != $hex) {
 					return false;
 				}
-				if ($this->data[$y][$x]->isCovered()) {
+				if ($this->data[$y][$x]->is_covered) {
 					return false;
 				}
 			}
@@ -147,11 +146,11 @@ class Image
 	 * @param int $y0
 	 * @param int $y1
 	 */
-	private function _cover($x0, $x1, $y0, $y1)
+	public function _cover($x0, $x1, $y0, $y1)
 	{
 		for ($y = $y0; $y < $y1; $y++) {
 			for ($x = $x0; $x < $x1; $x++) {
-				$this->data[$y][$x]->setCovered();
+				$this->data[$y][$x]->is_covered = true;
 			}
 		}
 	}
@@ -162,7 +161,7 @@ class Image
 	 * @param string $path
 	 * @return image resource
 	 */
-	private function _create($path)
+	public function _create($path)
 	{
 		if (!is_readable($path)) {
 			throw new \Exception("Cannot open image file '" . $path . "'.");
