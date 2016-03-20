@@ -1,0 +1,25 @@
+color,brick,quantity
+black,2x4,782
+black,1x1,616
+white,2x4,5
+white,1x1,139
+lime,2x4,4
+lime,1x1,43
+blue,2x4,29
+blue,1x1,100
+orange,2x4,5
+orange,1x1,56
+yellow,2x4,80
+yellow,1x1,117
+"reddish brown",2x4,3
+"reddish brown",1x1,100
+"dark tan",2x4,10
+"dark tan",1x1,149
+"light gray",2x4,4
+"light gray",1x1,27
+"dark blue",2x4,0
+"dark blue",1x1,8
+tan,2x4,4
+tan,1x1,255
+"medium blue",2x4,18
+"medium blue",1x1,54
