@@ -42,7 +42,9 @@ class BrickList
 			array_multisort($data, SORT_DESC, $tiles);
 			foreach ($tiles as $tile) {
 				$item = new Item($tile, $image->fillTile($tile));
-				$items[] = $item;
+				if ($item->quantity) {
+					$items[] = $item;
+				}
 			}
 		}
 		$this->merge($items);

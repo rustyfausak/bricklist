@@ -115,6 +115,9 @@ class Image
 				}
 			}
 		}
+		if ($tile->brick->is_plate) {
+			return min(1, $num);
+		}
 		return $num;
 	}
 
@@ -131,27 +134,26 @@ class Image
 	{
 		$length = $tile->brick->length;
 		$width = $tile->brick->width;
-		$hex = $tile->color->hex;
-		if ($this->_fit($hex, $x, $x + $length, $y, $y + $width)) {
-			$this->_cover($hex, $x, $x + $length, $y, $y + $width);
+		if ($this->_fit($tile, $x, $x + $length, $y, $y + $width)) {
+			$this->_cover($tile, $x, $x + $length, $y, $y + $width);
 			return true;
 		}
-		elseif ($this->_fit($hex, $x, $x + $width, $y, $y + $length)) {
-			$this->_cover($hex, $x, $x + $width, $y, $y + $length);
+		elseif ($this->_fit($tile, $x, $x + $width, $y, $y + $length)) {
+			$this->_cover($tile, $x, $x + $width, $y, $y + $length);
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @param string $hex
+	 * @param Tile $tile
 	 * @param int $x0
 	 * @param int $x1
 	 * @param int $y0
 	 * @param int $y1
 	 * @return bool
 	 */
-	public function _fit($hex, $x0, $x1, $y0, $y1)
+	public function _fit($tile, $x0, $x1, $y0, $y1)
 	{
 		for ($y = $y0; $y < $y1; $y++) {
 			for ($x = $x0; $x < $x1; $x++) {
@@ -161,7 +163,7 @@ class Image
 				if ($x >= sizeof($this->data[$y])) {
 					return false;
 				}
-				if ($this->data[$y][$x]->hex != $hex) {
+				if ($this->data[$y][$x]->hex != $tile->color->hex) {
 					return false;
 				}
 				if ($this->data[$y][$x]->is_covered) {
@@ -173,21 +175,23 @@ class Image
 	}
 
 	/**
-	 * @param string $hex
+	 * @param Tile $tile
 	 * @param int $x0
 	 * @param int $x1
 	 * @param int $y0
 	 * @param int $y1
 	 */
-	public function _cover($hex, $x0, $x1, $y0, $y1)
+	public function _cover($tile, $x0, $x1, $y0, $y1)
 	{
-		$this->placements[] = [
-			'hex' => $hex,
-			'x0' => $x0,
-			'y0' => $y0,
-			'x1' => $x1,
-			'y1' => $y1
-		];
+		if (!$tile->brick->is_plate) {
+			$this->placements[] = [
+				'hex' => $tile->color->hex,
+				'x0' => $x0,
+				'y0' => $y0,
+				'x1' => $x1,
+				'y1' => $y1
+			];
+		}
 		for ($y = $y0; $y < $y1; $y++) {
 			for ($x = $x0; $x < $x1; $x++) {
 				$this->data[$y][$x]->is_covered = true;

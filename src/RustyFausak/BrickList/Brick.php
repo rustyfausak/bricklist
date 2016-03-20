@@ -8,15 +8,18 @@ class Brick
 	public $length;
 	/* @var int */
 	public $width;
+	/* @var bool */
+	public $is_plate;
 
 	/**
 	 * @param int $length
 	 * @param int $width
 	 */
-	public function __construct($length, $width)
+	public function __construct($length, $width, $is_plate = false)
 	{
 		$this->length = $length;
 		$this->width = $width;
+		$this->is_plate = $is_plate;
 	}
 
 	/**
@@ -24,6 +27,9 @@ class Brick
 	 */
 	public function __toString()
 	{
+		if ($this->is_plate) {
+			return 'plate';
+		}
 		return "{$this->length}x{$this->width}";
 	}
 
@@ -32,6 +38,9 @@ class Brick
 	 */
 	public function getSize()
 	{
+		if ($this->is_plate) {
+			return PHP_INT_MAX;
+		}
 		return $this->length * $this->width;
 	}
 
@@ -48,6 +57,9 @@ class Brick
 	 */
 	public static function fromText($text)
 	{
+		if (trim($text) == 'plate') {
+			return new self(1, 1, true);
+		}
 		$parts = array_map('trim', explode('x', $text));
 		if (sizeof($parts) != 2) {
 			throw new \Exception("Could not build Brick from text '" . $text . "'.");
