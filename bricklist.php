@@ -18,6 +18,7 @@ $config = new Config($argv[1]);
 $bricklist = new BrickList($config);
 for ($i = 2; $i < sizeof($argv); $i++) {
 	$image = $bricklist->process($argv[$i]);
-	$image->generatePlacementsImage('output-' . basename($argv[$i]) . '.png');
+	$pathinfo = pathinfo(basename($argv[$i]));
+	$image->generatePlacementsImage('output-' . $pathinfo['filename'] . '.png');
 }
 $bricklist->outputCsv('output.csv');

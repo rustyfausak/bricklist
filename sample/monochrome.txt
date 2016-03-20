@@ -1,0 +1,4 @@
+1x1, white#FFFFFF
+1x1, light gray#9C9C9C
+1x1, dark gray#595D60
+plate, black#000000

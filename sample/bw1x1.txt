@@ -1,2 +1,0 @@
-1x1, white#FFFFFF
-1x1, black#000000
