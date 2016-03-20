@@ -1,6 +1,6 @@
 ## BrickList ##
 
-Creates a list of bricks of that helps create a Lego mosaic.
+Creates a list of bricks that helps create a Lego mosaic.
 
 ### Usage ###
 
