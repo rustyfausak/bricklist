@@ -14,6 +14,7 @@ class Image
 	public function __construct($path, $config)
 	{
 		$this->data = [];
+		$this->placements = [];
 		$this->load($path, $config);
 	}
 
@@ -70,6 +71,37 @@ class Image
 	}
 
 	/**
+	 * @param string $image_path
+	 */
+	public function generatePlacementsImage($image_path)
+	{
+		$scale = 10;
+		$im = imagecreatetruecolor(sizeof($this->data[0]) * $scale, sizeof($this->data) * $scale);
+		if (!$im) {
+			throw new \Exception("Could not intialize image.");
+		}
+		$border_color = imagecolorallocate($im, 0, 255, 0);
+		foreach ($this->placements as $placement) {
+			$rgb = Color::hexToRgb($placement['hex']);
+			imagerectangle($im,
+				$placement['x0'] * $scale,
+				$placement['y0'] * $scale,
+				$placement['x1'] * $scale,
+				$placement['y1'] * $scale,
+				$border_color
+			);
+			imagefilltoborder($im,
+				$placement['x0'] * $scale + round($scale / 2),
+				$placement['y0'] * $scale + round($scale / 2),
+				$border_color,
+				imagecolorallocate($im, $rgb[0], $rgb[1], $rgb[2])
+			);
+		}
+		imagepng($im, $image_path);
+		imagedestroy($im);
+	}
+
+	/**
 	 * @param Tile $tile
 	 * @return int
 	 */
@@ -101,11 +133,11 @@ class Image
 		$width = $tile->brick->width;
 		$hex = $tile->color->hex;
 		if ($this->_fit($hex, $x, $x + $length, $y, $y + $width)) {
-			$this->_cover($x, $x + $length, $y, $y + $width);
+			$this->_cover($hex, $x, $x + $length, $y, $y + $width);
 			return true;
 		}
 		elseif ($this->_fit($hex, $x, $x + $width, $y, $y + $length)) {
-			$this->_cover($x, $x + $width, $y, $y + $length);
+			$this->_cover($hex, $x, $x + $width, $y, $y + $length);
 			return true;
 		}
 		return false;
@@ -141,13 +173,21 @@ class Image
 	}
 
 	/**
+	 * @param string $hex
 	 * @param int $x0
 	 * @param int $x1
 	 * @param int $y0
 	 * @param int $y1
 	 */
-	public function _cover($x0, $x1, $y0, $y1)
+	public function _cover($hex, $x0, $x1, $y0, $y1)
 	{
+		$this->placements[] = [
+			'hex' => $hex,
+			'x0' => $x0,
+			'y0' => $y0,
+			'x1' => $x1,
+			'y1' => $y1
+		];
 		for ($y = $y0; $y < $y1; $y++) {
 			for ($x = $x0; $x < $x1; $x++) {
 				$this->data[$y][$x]->is_covered = true;

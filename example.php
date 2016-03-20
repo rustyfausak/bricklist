@@ -17,6 +17,7 @@ if (sizeof($argv) < 3) {
 $config = new Config($argv[1]);
 $bricklist = new BrickList($config);
 for ($i = 2; $i < sizeof($argv); $i++) {
-	$bricklist->process($argv[$i]);
+	$image = $bricklist->process($argv[$i]);
+	$image->generatePlacementsImage('output-' . basename($argv[$i]) . '.png');
 }
 $bricklist->outputCsv('output.csv');

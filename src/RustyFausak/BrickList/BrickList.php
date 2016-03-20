@@ -26,7 +26,7 @@ class BrickList
 	 * Reads an image at the path `$path` and processes it into a brick list.
 	 *
 	 * @param string $path
-	 * @return array of Item
+	 * @return Image
 	 */
 	public function process($image_path)
 	{
@@ -46,6 +46,7 @@ class BrickList
 			}
 		}
 		$this->merge($items);
+		return $image;
 	}
 
 	/**
